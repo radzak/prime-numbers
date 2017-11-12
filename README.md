@@ -18,9 +18,6 @@
         ```python
         @timer
         def eratosthenes_sieve_basic(n):
-            """
-            Generate a list of primes from 2 to n inclusively.
-            """
             sieve = [False, False] + [True] * (n - 1)
             for num, is_prime in enumerate(sieve):
                 if is_prime:
@@ -142,9 +139,9 @@
     def main():
         for limit in [10 ** power for power in range(3, 9)]:
             eratosthenes_only_odd(n=limit)
-            primesfrom2to(n=limit)
-            primesfrom3to(n=limit)
             ambi_sieve(n=limit)
+            primesfrom3to(n=limit)
+            primesfrom2to(n=limit)
     
     
     def plot():
@@ -159,5 +156,3 @@
         main()
         plot()
 	```
-    * Wykres:
-    ![](https://imgur.com/a/0isFc)
