@@ -83,7 +83,7 @@
 
 2. Algorytmy użyte w porównaniu:  
 	* Używają one biblioteki do obliczeń numerycznych [numpy](http://www.numpy.org/).  
-	`import numpy as np`  
+	`import numpy as np`
 	<br/><br/>
         ```python
         @timer
@@ -122,8 +122,8 @@
             return np.r_[2, 3, ((3 * np.nonzero(sieve)[0] + 1) | 1)]
         ```
     * Na potrzeby wykonania wykresu przerobiłem trochę dekorator timer, w taki sposób, by automatycznie przy wykonaniu funkcji najlepszy czas jej wykonania zapisywał się w słowniku `timings`:  
-    `timings = defaultdict(lambda: defaultdict(list))`.  
-    <br/><br/>
+    `timings = defaultdict(lambda: defaultdict(list))`.
+    </br></br>
         ```python
         def timer(f):
             def timed(*args, **kwargs):
