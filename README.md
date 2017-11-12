@@ -12,6 +12,7 @@
             return timed
         ```
 	* Dlaczego używam funkcji min, a nie liczę średniej ze wszystkich czasów wykonania? Otóż natknąłem się na bardzo trafną uwagę:
+	<br/><br/>
 	> The fastest time represents the best an algorithm can perform when the caches are loaded and the system isn't busy with other tasks. All the timings are noisy -- the fastest time is the least noisy. It is easy to show that the fastest timings are the most reproducible and therefore the most useful when timing two different implementations.
 	
     * Zabawę zacząłem od najprostszej wersji algorytmu wyznaczania liczb pierwszych z zadanego przedziału <2, n> przypisywanemu Eratostenesowi z Cyreny.
@@ -28,7 +29,7 @@
         
 	* `list(itertools.compress(range(0, n + 1), sieve))`  
 	[Funkcja compress z biblioteki itertools](https://docs.python.org/3/library/itertools.html#itertools.compress) wywołana z takimi argumentami zwraca tylko te elementy range(0, n + 1), dla których odpowiadająca im wartość w sicie jest True, w tym przypadką będą to liczby pierwsze.
-    * Sprawdziłem, ile zajmuje znalezienie liczb pierwszy w zakresie od 2 do 10000000:  
+    * Sprawdziłem, ile zajmuje znalezienie liczb pierwszych w zakresie od 2 do 10000000:  
     	##### eratosthenes_sieve_basic(10000000) took: 1.9464535 sec
     * Pomyślałem, że ciekawie będzie pozmieniać w tym krótkim kodzie parę rzeczy i sprawdzić jak to wpłynie na wydajność kodu.
 	* Zacząłem od zmienienia pętli, która przypisuje wielokrotnościom liczb pierwszych wartości False. Użyłem do tego wycinków (ang. slices), w Pythonie można podmienić wycinek listy inną listą. Tak więc wycinek `sieve[num ** 2:: num]` podmieniam na odpowiednią liczbę wartości False `[False] * len(sieve[num ** 2:: num])`:
@@ -155,4 +156,8 @@
     if __name__ == '__main__':
         main()
         plot()
-	```
+	```  
+
+    * Wykres:
+    <br/><br/>
+    ![Wykres](https://github.com/radzak/prime-numbers/blob/master/wykres.png)
