@@ -15,7 +15,7 @@ def time_once(f):
         result = f(*args, **kw)
         te = time.time()
         print('func:%r args:[%r, %r] took: %2.7f sec' % (f.__name__, args, kw, te-ts))
-        timings[f.__name__]['x'].append(kw['limit'])  # x axis
+        timings[f.__name__]['x'].append(kw['n'])  # x axis
         timings[f.__name__]['y'].append(te - ts)  # y axis
         return result
     return timed

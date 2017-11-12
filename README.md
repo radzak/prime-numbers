@@ -28,7 +28,7 @@
         ```
         
 	* `list(itertools.compress(range(0, n + 1), sieve))`  
-	[Funkcja compress z biblioteki itertools](https://docs.python.org/3/library/itertools.html#itertools.compress) wywołana z takimi argumentami zwraca tylko te elementy range(0, n + 1), dla których odpowiadająca im wartość w sicie jest True, w tym przypadką będą to liczby pierwsze.
+	[Funkcja compress z biblioteki itertools](https://docs.python.org/3/library/itertools.html#itertools.compress) wywołana z takimi argumentami zwraca tylko te elementy range(0, n + 1), dla których odpowiadająca im wartość w sicie jest True, w tym przypadku będą to liczby pierwsze.
     * Sprawdziłem, ile zajmuje znalezienie liczb pierwszych w zakresie od 2 do 10000000:  
     	#### eratosthenes_sieve_basic(10000000) took: 1.9464535 sec
     * Pomyślałem, że ciekawie będzie pozmieniać w tym krótkim kodzie parę rzeczy i sprawdzić jak to wpłynie na wydajność kodu. Zacząłem od zmienienia pętli, która przypisuje wielokrotnościom liczb pierwszych wartości False. Użyłem do tego wycinków (ang. slices), w Pythonie można podmienić wycinek listy inną listą. Tak więc wycinek `sieve[num ** 2:: num]` podmieniam na odpowiednią liczbę wartości False `[False] * len(sieve[num ** 2:: num])`:
@@ -149,7 +149,8 @@
         def plot():
             for name, timing in timings.items():
                 plt.plot(timing['x'], timing['y'], label=name)
-            plt.xscale('log')
+            
+            plt.gca().yaxis.set_major_formatter(FormatStrFormatter('%2.1f s'))
             plt.legend(loc='upper left')
             plt.show()
         
@@ -159,6 +160,13 @@
             plot()
         ```  
 
-    * Wykres:
+    * Wykres zależności czasu działania programu od limitu n:
     <br/><br/>
     ![Wykres](https://github.com/radzak/prime-numbers/blob/master/wykres.png)
+
+    |                       | 5000        | 10000       | 50000       | 100000      | 500000      | 1000000     | 5000000     | 10000000    | 50000000    | 100000000   |
+    |-----------------------|-------------|-------------|-------------|-------------|-------------|-------------|-------------|-------------|-------------|-------------|
+    | eratosthenes_only_odd | 0.000110430 | 0.000139739 | 0.000657882 | 0.001353349 | 0.006901198 | 0.014527605 | 0.137059519 | 0.25822561  | 1.26553784  | 2.806702875 |
+    | ambi_sieve            | 0.000036206 | 0.000036206 | 0.000036206 | 0.000036206 | 0.001563346 | 0.003099196 | 0.049239187 | 0.091219754 | 0.545811518 | 1.254835714 |
+    | primesfrom3to         | 0.000032167 | 0.000041829 | 0.000110394 | 0.000198645 | 0.000856721 | 0.001739746 | 0.009431428 | 0.019659354 | 0.263384407 | 0.556288335 |
+    | primesfrom2to         | 0.000049117 | 0.000062179 | 0.000127794 | 0.000207102 | 0.000780147 | 0.001505282 | 0.007677006 | 0.016111291 | 0.177609782 | 0.502962244 |

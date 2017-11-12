@@ -1,6 +1,7 @@
 import numpy as np
 from itertools import compress
 import matplotlib.pyplot as plt
+from matplotlib.ticker import FormatStrFormatter
 import itertools
 
 from timers import timer, timings
@@ -194,7 +195,9 @@ def primesfrom2to(n):
 
 
 def main():
-    for limit in [10 ** power for power in range(5, 9)]:
+    # for limit in [10 ** power for power in range(5, 9)]:
+    for limit in [5000, 10000, 50000, 100000, 500000, 1000000, 5000000, 10000000,
+                  50000000, 100000000]:
         eratosthenes_only_odd(n=limit)
         ambi_sieve(n=limit)
         primesfrom3to(n=limit)
@@ -204,7 +207,8 @@ def main():
 def plot():
     for name, timing in timings.items():
         plt.plot(timing['x'], timing['y'], label=name)
-    plt.xscale('log')
+
+    plt.gca().yaxis.set_major_formatter(FormatStrFormatter('%2.1f s'))
     plt.legend(loc='upper left')
     plt.show()
 
